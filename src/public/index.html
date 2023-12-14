@@ -1,0 +1,26 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Store MC</title>
+</head>
+<body>
+    <button id="checkout">
+        Pay
+    </button>
+
+    <script>
+        const checkout = document.getElementById('checkout')
+        checkout.addEventListener('click', async () => {
+            const responseFetch = await fetch('api/v1/create-order-payment', {
+                method: "POST"
+            });
+
+            const { data } = await responseFetch.json()
+            console.log('data :>> ', data.init_point);
+            window.location.href = data.init_point;
+        })
+    </script>
+</body>
+</html>
